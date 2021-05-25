@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31220.234
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloAspNet", "HelloAspNet\HelloAspNet.csproj", "{A819EBA2-1B52-4A91-B373-AC0BE1ACBB13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathematicsHelper", "MathematicsHelper\MathematicsHelper.csproj", "{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A819EBA2-1B52-4A91-B373-AC0BE1ACBB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A819EBA2-1B52-4A91-B373-AC0BE1ACBB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A819EBA2-1B52-4A91-B373-AC0BE1ACBB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A819EBA2-1B52-4A91-B373-AC0BE1ACBB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A93D0825-9B4C-445E-B044-69E7DA8802DB}
+	EndGlobalSection
+EndGlobal

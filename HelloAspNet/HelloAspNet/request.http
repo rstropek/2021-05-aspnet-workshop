@@ -1,0 +1,28 @@
+@host=https://localhost:5001
+
+###
+GET {{host}}/api/claims
+
+###
+GET {{host}}/api/claims/42974
+
+###
+POST {{host}}/api/claims
+Content-Type: application/json
+
+{
+    "contract": "Testvertrag",
+    "claimAmount": 4200,
+    "claimTimestamp": "2021-05-25T08:00:00"
+}
+
+###
+DELETE {{host}}/api/claims/37218
+
+###
+PATCH {{host}}/api/claims/2704
+Content-Type: application/json
+
+{
+    "contract": "FooBar"
+}

@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MathematicsHelper;
+using Microsoft.AspNetCore.Http;
+using HelloAspNet.Data;
 
 namespace HelloAspNet
 {
@@ -30,6 +32,8 @@ namespace HelloAspNet
             //services.AddSingleton<ICalculator, Calculator>();
             services.AddMathematicsHelpers();
 
+            services.AddSingleton<IClaimsRepository, ClaimsRepository>();
+
             services.AddControllers();
         }
 
@@ -43,6 +47,25 @@ namespace HelloAspNet
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                // Do something with context.Request (e.g. logging)
+                Console.WriteLine("Processing...");
+
+                await next();
+            });
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.StartsWithSegments("/hello/world"))
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                    return;
+                }
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,4 +1,5 @@
 ﻿using HelloAspNet.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -43,8 +44,15 @@ namespace HelloAspNet.Controllers
 
         // GET https://localhost:5001/api/claims -> List of all existing claim
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<GetClaimDto>> GetAllAsync()
         {
+            // Authorization code
+            if (User.Claims.First(c => c.Type == System.Security.Claims.ClaimTypes.GivenName).Value == "Max")
+            {
+                // ... (filter database according to identity)
+            }
+
             return (await claimsRepository.GetAsync())
                 .Select(claim => new GetClaimDto(claim.ID, claim.Contract, claim.ClaimAmount, claim.ClaimTimestamp));
         }

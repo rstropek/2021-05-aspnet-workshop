@@ -14,6 +14,10 @@ using System.Threading.Tasks;
 using MathematicsHelper;
 using Microsoft.AspNetCore.Http;
 using HelloAspNet.Data;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.Net.Mime;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HelloAspNet
 {
@@ -40,6 +44,23 @@ namespace HelloAspNet
             {
                 doc.DocumentName = "My super API";
             });
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://demo.identityserver.io";
+                    options.Audience = "api";
+
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnTokenValidated = context =>
+                        {
+                            context.Principal!.Identities.First().AddClaim(new System.Security.Claims.Claim(ClaimTypes.GivenName, "Tom"));
+                            context.Principal!.Identities.First().AddClaim(new System.Security.Claims.Claim(ClaimTypes.Role, "Admin"));
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -51,6 +72,7 @@ namespace HelloAspNet
 
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.Use(async (context, next) =>

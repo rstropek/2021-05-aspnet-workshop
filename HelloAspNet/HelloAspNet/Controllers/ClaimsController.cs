@@ -1,6 +1,8 @@
 ﻿using HelloAspNet.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,10 +16,29 @@ namespace HelloAspNet.Controllers
     public class ClaimsController : ControllerBase
     {
         private readonly IClaimsRepository claimsRepository;
+        private readonly IConfiguration configuration;
+        private readonly ILogger<ClaimsController> logger;
 
-        public ClaimsController(IClaimsRepository claimsRepository)
+        public ClaimsController(IClaimsRepository claimsRepository, IConfiguration configuration,
+            ILogger<ClaimsController> logger)
         {
             this.claimsRepository = claimsRepository;
+            this.configuration = configuration;
+            this.logger = logger;
+
+            // NEVER DO THAT IN REAL LIFE! Just for demonstrating settings.
+            //var rand = new Random();
+            //var initialClaims = int.Parse(configuration["InitialClaims"]);
+            //for (var i = 0; i < initialClaims; i++)
+            //{
+            //    claimsRepository.AddAsync(new Claim()
+            //    {
+            //        ID = rand.Next(),
+            //        Contract = $"Contract {i + 1}",
+            //        ClaimAmount = 42m,
+            //        ClaimTimestamp = DateTime.Today
+            //    }).Wait();
+            //}
         }
 
         // GET https://localhost:5001/api/claims -> List of all existing claim
@@ -43,6 +64,9 @@ namespace HelloAspNet.Controllers
             var claim = await claimsRepository.GetByIdAsync(claimId);
 
             if (claim != null) return Ok(new GetClaimDto(claim.ID, claim.Contract, claim.ClaimAmount, claim.ClaimTimestamp));
+
+            // Log not found error
+            logger.LogWarning($"Claim with id {claimId} not found");
             return NotFound();
         }
 
@@ -66,8 +90,8 @@ namespace HelloAspNet.Controllers
             // In practice, use AutoMapper for that (https://automapper.org/)
 
             return CreatedAtRoute(
-                nameof(GetByIdAsync), 
-                new { claimId = newClaim.ID }, 
+                nameof(GetByIdAsync),
+                new { claimId = newClaim.ID },
                 await claimsRepository.AddAsync(newClaim));
         }
 

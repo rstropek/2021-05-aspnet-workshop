@@ -35,6 +35,7 @@ namespace HelloAspNet
             services.AddSingleton<IClaimsRepository, ClaimsRepository>();
 
             services.AddControllers();
+            services.AddApplicationInsightsTelemetry();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

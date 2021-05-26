@@ -36,6 +36,10 @@ namespace HelloAspNet
 
             services.AddControllers();
             services.AddApplicationInsightsTelemetry();
+            services.AddSwaggerDocument(doc =>
+            {
+                doc.DocumentName = "My super API";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -67,6 +71,9 @@ namespace HelloAspNet
 
                 await next();
             });
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseEndpoints(endpoints =>
             {

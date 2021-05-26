@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloAspNet", "HelloAspNet\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathematicsHelper", "MathematicsHelper\MathematicsHelper.csproj", "{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloAspNet.Tests", "HelloAspNet.Tests\HelloAspNet.Tests.csproj", "{50584A80-9368-4F0F-A136-892E2F7331A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD5FF648-DAFA-4DAE-B1D7-5ED39F85DD2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50584A80-9368-4F0F-A136-892E2F7331A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50584A80-9368-4F0F-A136-892E2F7331A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50584A80-9368-4F0F-A136-892E2F7331A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50584A80-9368-4F0F-A136-892E2F7331A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
